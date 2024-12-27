@@ -62,11 +62,48 @@ export default {
         DEFAULT: {
           css: {
             maxWidth: '100%',
-            color: 'hsl(var(--foreground))',
+            color: '#000000',
             a: {
               color: '#9b87f5',
               '&:hover': {
                 color: '#7e69ab',
+              },
+            },
+            blockquote: {
+              borderLeftColor: '#9b87f5',
+              backgroundColor: '#f8f9fa',
+              padding: '1rem',
+              fontStyle: 'italic',
+              marginLeft: 0,
+              marginRight: 0,
+            },
+            code: {
+              backgroundColor: '#f8f9fa',
+              padding: '0.2em 0.4em',
+              borderRadius: '4px',
+              fontSize: '0.875em',
+            },
+            'pre code': {
+              backgroundColor: 'transparent',
+              padding: 0,
+              borderRadius: 0,
+              fontSize: '1em',
+            },
+            pre: {
+              backgroundColor: '#f8f9fa',
+              padding: '1rem',
+              borderRadius: '8px',
+              overflow: 'auto',
+            },
+            table: {
+              borderCollapse: 'collapse',
+              width: '100%',
+              'thead th': {
+                backgroundColor: '#f8f9fa',
+              },
+              'td, th': {
+                border: '1px solid #e5e7eb',
+                padding: '0.75rem',
               },
             },
           },

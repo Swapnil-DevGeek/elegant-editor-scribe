@@ -2,8 +2,15 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
 import TextAlign from '@tiptap/extension-text-align';
-import TextStyle from '@tiptap/extension-text-style';
-import Color from '@tiptap/extension-color';
+import Table from '@tiptap/extension-table';
+import TableRow from '@tiptap/extension-table-row';
+import TableCell from '@tiptap/extension-table-cell';
+import TableHeader from '@tiptap/extension-table-header';
+import Image from '@tiptap/extension-image';
+import Link from '@tiptap/extension-link';
+import HorizontalRule from '@tiptap/extension-horizontal-rule';
+import HardBreak from '@tiptap/extension-hard-break';
+import Typography from '@tiptap/extension-typography';
 import MenuBar from './MenuBar';
 import { cn } from '@/lib/utils';
 
@@ -18,11 +25,22 @@ const RichTextEditor = ({ className, content = '', onChange }: RichTextEditorPro
     extensions: [
       StarterKit,
       Underline,
-      TextStyle,
-      Color,
+      Typography,
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       }),
+      Table.configure({
+        resizable: true,
+      }),
+      TableRow,
+      TableCell,
+      TableHeader,
+      Image,
+      Link.configure({
+        openOnClick: false,
+      }),
+      HorizontalRule,
+      HardBreak,
     ],
     content,
     editorProps: {
@@ -38,7 +56,7 @@ const RichTextEditor = ({ className, content = '', onChange }: RichTextEditorPro
   return (
     <div className={cn("flex flex-col gap-4 w-full max-w-4xl mx-auto", className)}>
       <MenuBar editor={editor} />
-      <div className="min-h-[200px] w-full border border-input bg-background rounded-lg p-4">
+      <div className="min-h-[200px] w-full rounded-lg p-4 bg-white">
         <EditorContent editor={editor} />
       </div>
     </div>
