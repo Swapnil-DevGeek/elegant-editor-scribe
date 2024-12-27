@@ -12,7 +12,7 @@ import HorizontalRule from '@tiptap/extension-horizontal-rule';
 import HardBreak from '@tiptap/extension-hard-break';
 import Typography from '@tiptap/extension-typography';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
-import { lowlight } from 'lowlight';
+import { common, createLowlight } from 'lowlight';
 import MenuBar from './MenuBar';
 import { cn } from '@/lib/utils';
 
@@ -21,6 +21,8 @@ interface RichTextEditorProps {
   content?: string;
   onChange?: (content: string) => void;
 }
+
+const lowlight = createLowlight(common);
 
 const RichTextEditor = ({ className, content = '', onChange }: RichTextEditorProps) => {
   const editor = useEditor({
