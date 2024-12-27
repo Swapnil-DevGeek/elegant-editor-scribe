@@ -32,6 +32,9 @@ interface MenuBarProps {
   editor: Editor | null;
 }
 
+// Define the Level type to match TipTap's expected types
+type Level = 1 | 2 | 3 | 4 | 5 | 6;
+
 const MenuBar = ({ editor }: MenuBarProps) => {
   if (!editor) {
     return null;
@@ -57,7 +60,8 @@ const MenuBar = ({ editor }: MenuBarProps) => {
     editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run();
   };
 
-  const headingLevels = [1, 2, 3, 4, 5, 6];
+  // Define headingLevels as Level type
+  const headingLevels: Level[] = [1, 2, 3, 4, 5, 6];
 
   return (
     <div className="flex justify-center gap-2 p-2 rounded-lg bg-white">
