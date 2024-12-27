@@ -76,6 +76,8 @@ export default {
               fontStyle: 'italic',
               marginLeft: 0,
               marginRight: 0,
+              borderRadius: '0.375rem',
+              boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
             },
             code: {
               backgroundColor: '#f8f9fa',
@@ -90,10 +92,15 @@ export default {
               fontSize: '1em',
             },
             pre: {
-              backgroundColor: '#f8f9fa',
+              backgroundColor: '#1e293b',
+              color: '#e2e8f0',
               padding: '1rem',
               borderRadius: '8px',
               overflow: 'auto',
+              fontSize: '0.875em',
+              lineHeight: '1.7142857',
+              margin: '1.5em 0',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
             },
             table: {
               borderCollapse: 'collapse',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Editor } from '@tiptap/react';
 import { Toggle } from "@/components/ui/toggle";
 import {
@@ -20,19 +20,23 @@ import {
   Undo,
   Redo,
   ChevronDown,
+  Plus,
 } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
 interface MenuBarProps {
   editor: Editor | null;
 }
 
-// Define the Level type to match TipTap's expected types
 type Level = 1 | 2 | 3 | 4 | 5 | 6;
 
 const MenuBar = ({ editor }: MenuBarProps) => {
@@ -48,19 +52,56 @@ const MenuBar = ({ editor }: MenuBarProps) => {
   };
 
   const setLink = () => {
-    const url = window.prompt('Enter URL:');
-    if (url) {
-      editor.chain().focus().setLink({ href: url }).run();
-    } else {
-      editor.chain().focus().unsetLink().run();
+    const previousUrl = editor.getAttributes('link').href;
+    const url = window.prompt('Enter URL:', previousUrl);
+
+    // cancelled
+    if (url === null) {
+      return;
     }
+
+    // empty
+    if (url === '') {
+      editor.chain().focus().unsetLink().run();
+      return;
+    }
+
+    // update link
+    editor.chain().focus().setLink({ href: url }).run();
   };
 
   const addTable = () => {
     editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run();
   };
 
-  // Define headingLevels as Level type
+  const addColumnBefore = () => {
+    editor.chain().focus().addColumnBefore().run();
+  };
+
+  const addColumnAfter = () => {
+    editor.chain().focus().addColumnAfter().run();
+  };
+
+  const deleteColumn = () => {
+    editor.chain().focus().deleteColumn().run();
+  };
+
+  const addRowBefore = () => {
+    editor.chain().focus().addRowBefore().run();
+  };
+
+  const addRowAfter = () => {
+    editor.chain().focus().addRowAfter().run();
+  };
+
+  const deleteRow = () => {
+    editor.chain().focus().deleteRow().run();
+  };
+
+  const deleteTable = () => {
+    editor.chain().focus().deleteTable().run();
+  };
+
   const headingLevels: Level[] = [1, 2, 3, 4, 5, 6];
 
   return (
@@ -215,14 +256,47 @@ const MenuBar = ({ editor }: MenuBarProps) => {
       <div className="w-px h-6 bg-gray-200 mx-1" />
 
       <div className="flex gap-1">
-        <Toggle
-          size="sm"
-          onPressedChange={addTable}
-          className="hover:bg-muted"
-          title="Insert Table"
-        >
-          <TableIcon className="h-4 w-4" />
-        </Toggle>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Toggle
+              size="sm"
+              className="hover:bg-muted"
+              title="Table Controls"
+            >
+              <TableIcon className="h-4 w-4" />
+            </Toggle>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem onSelect={addTable}>
+              Insert Table
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>
+                <Plus className="h-4 w-4 mr-2" />
+                Add Column
+              </DropdownMenuSubTrigger>
+              <DropdownMenuSubContent>
+                <DropdownMenuItem onSelect={addColumnBefore}>Before</DropdownMenuItem>
+                <DropdownMenuItem onSelect={addColumnAfter}>After</DropdownMenuItem>
+              </DropdownMenuSubContent>
+            </DropdownMenuSub>
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>
+                <Plus className="h-4 w-4 mr-2" />
+                Add Row
+              </DropdownMenuSubTrigger>
+              <DropdownMenuSubContent>
+                <DropdownMenuItem onSelect={addRowBefore}>Before</DropdownMenuItem>
+                <DropdownMenuItem onSelect={addRowAfter}>After</DropdownMenuItem>
+              </DropdownMenuSubContent>
+            </DropdownMenuSub>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onSelect={deleteColumn}>Delete Column</DropdownMenuItem>
+            <DropdownMenuItem onSelect={deleteRow}>Delete Row</DropdownMenuItem>
+            <DropdownMenuItem onSelect={deleteTable}>Delete Table</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
         <Toggle
           size="sm"
           onPressedChange={addImage}
