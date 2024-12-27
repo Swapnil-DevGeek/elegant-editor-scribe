@@ -32,6 +32,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import LinkDialog from './LinkDialog';
 
 interface MenuBarProps {
   editor: Editor | null;
@@ -49,25 +50,6 @@ const MenuBar = ({ editor }: MenuBarProps) => {
     if (url) {
       editor.chain().focus().setImage({ src: url }).run();
     }
-  };
-
-  const setLink = () => {
-    const previousUrl = editor.getAttributes('link').href;
-    const url = window.prompt('Enter URL:', previousUrl);
-
-    // cancelled
-    if (url === null) {
-      return;
-    }
-
-    // empty
-    if (url === '') {
-      editor.chain().focus().unsetLink().run();
-      return;
-    }
-
-    // update link
-    editor.chain().focus().setLink({ href: url }).run();
   };
 
   const addTable = () => {
@@ -305,15 +287,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
         >
           <Image className="h-4 w-4" />
         </Toggle>
-        <Toggle
-          size="sm"
-          pressed={editor.isActive('link')}
-          onPressedChange={setLink}
-          className="data-[state=on]:bg-primary data-[state=on]:text-primary-foreground hover:bg-muted"
-          title="Add Link"
-        >
-          <Link className="h-4 w-4" />
-        </Toggle>
+        <LinkDialog editor={editor} />
         <Toggle
           size="sm"
           onPressedChange={() => editor.chain().focus().setHorizontalRule().run()}

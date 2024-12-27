@@ -44,9 +44,11 @@ const RichTextEditor = ({ className, content = '', onChange }: RichTextEditorPro
       TableHeader,
       Image,
       Link.configure({
-        openOnClick: false,
+        openOnClick: true,
         HTMLAttributes: {
           class: 'text-primary hover:underline cursor-pointer',
+          target: '_blank',
+          rel: 'noopener noreferrer',
         },
       }),
       HorizontalRule,
