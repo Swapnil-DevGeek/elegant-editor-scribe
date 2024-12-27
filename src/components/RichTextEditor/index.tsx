@@ -58,7 +58,7 @@ const RichTextEditor = ({ className, content = '', onChange }: RichTextEditorPro
     content,
     editorProps: {
       attributes: {
-        class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none min-h-[500px] h-full',
+        class: 'prose prose-sm sm:prose-sm lg:prose-base xl:prose-lg mx-auto focus:outline-none min-h-[500px] h-full',
       },
     },
     onUpdate: ({ editor }) => {
@@ -67,8 +67,10 @@ const RichTextEditor = ({ className, content = '', onChange }: RichTextEditorPro
   });
 
   return (
-    <div className={cn("flex flex-col gap-4 w-full max-w-4xl mx-auto", className)}>
-      <MenuBar editor={editor} />
+    <div className={cn("flex flex-col gap-4 w-full max-w-4xl mx-auto relative", className)}>
+      <div className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
+        <MenuBar editor={editor} />
+      </div>
       <div className="min-h-[500px] h-full w-full rounded-lg p-4 bg-white">
         <EditorContent editor={editor} />
       </div>

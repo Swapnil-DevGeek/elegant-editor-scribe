@@ -145,7 +145,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
         </Toggle>
       </div>
 
-      <div className="w-px h-6 bg-gray-200 mx-1" />
+      <div className="w-px h-6 bg-gray-200" />
 
       <DropdownMenu>
         <DropdownMenuTrigger className="flex items-center gap-1 px-2 py-1 rounded hover:bg-muted">
@@ -175,7 +175,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <div className="w-px h-6 bg-gray-200 mx-1" />
+      <div className="w-px h-6 bg-gray-200" />
 
       <div className="flex gap-1">
         <Toggle
@@ -198,7 +198,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
         </Toggle>
       </div>
 
-      <div className="w-px h-6 bg-gray-200 mx-1" />
+      <div className="w-px h-6 bg-gray-200" />
 
       <div className="flex gap-1">
         <Toggle
@@ -230,7 +230,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
         </Toggle>
       </div>
 
-      <div className="w-px h-6 bg-gray-200 mx-1" />
+      <div className="w-px h-6 bg-gray-200" />
 
       <div className="flex gap-1">
         <Toggle
@@ -253,7 +253,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
         </Toggle>
       </div>
 
-      <div className="w-px h-6 bg-gray-200 mx-1" />
+      <div className="w-px h-6 bg-gray-200" />
 
       <div className="flex gap-1">
         <DropdownMenu>
@@ -324,7 +324,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
         </Toggle>
       </div>
 
-      <div className="w-px h-6 bg-gray-200 mx-1" />
+      <div className="w-px h-6 bg-gray-200" />
 
       <div className="flex gap-1">
         <Toggle
